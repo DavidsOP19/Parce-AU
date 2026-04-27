@@ -2,7 +2,7 @@
 
 > **Tu guía rápida para sobrevivir como estudiante colombiano en Australia.**
 
-Aplicación web monolítica (Flask + Jinja2 + Bootstrap 5 + JS Vanilla) con herramientas prácticas: calculadora de horas, control financiero, checklist de llegada, plantillas en inglés, números importantes y guía de transporte público.
+Aplicación web monolítica (Flask + Jinja2 + Bootstrap 5 + JS Vanilla) con herramientas prácticas: calculadora de horas, control financiero, checklist de llegada, plantillas en inglés, números importantes, guía de transporte público y directorio de abogados migratorios por ciudad.
 
 - ✅ Sin login ni registro.
 - ✅ Sin base de datos.
@@ -52,7 +52,8 @@ ParceAU/
 │   ├── checklists.json
 │   ├── plantillas.json
 │   ├── numeros.json
-│   └── transporte.json
+│   ├── transporte.json
+│   └── abogados.json       # Directorio de abogados migratorios
 ├── static/
 │   ├── vendor/             # Bootstrap 5 local (offline)
 │   ├── css/style.css
@@ -64,14 +65,15 @@ ParceAU/
 
 ## 🧰 Módulos
 
-| Módulo                  | Descripción                                                    |
-| ----------------------- | -------------------------------------------------------------- |
-| ⏱️ Calculadora de horas | Registra turnos y vigila el límite por quincena (configurable). |
-| 💰 Control financiero   | Ingresos, gastos, saldo y presupuesto diario.                  |
-| ✅ Checklist             | Tareas antes y después de llegar a Australia.                  |
-| 💬 Plantillas en inglés | Mensajes listos para copiar al portapapeles.                   |
-| 📞 Números importantes  | Emergencias, Fair Work, Lifeline, etc.                         |
-| 🚇 Transporte público   | Tarjetas y consejos por ciudad.                                |
+| Módulo                      | Descripción                                                                 |
+| --------------------------- | --------------------------------------------------------------------------- |
+| ⏱️ Calculadora de horas     | Registra turnos y vigila el límite por quincena (configurable).             |
+| 💰 Control financiero       | Ingresos, gastos, saldo y presupuesto diario.                              |
+| ✅ Checklist                 | Tareas antes y después de llegar a Australia.                              |
+| 💬 Plantillas en inglés     | Mensajes listos para copiar al portapapeles.                               |
+| 📞 Números importantes      | Emergencias, Fair Work, Lifeline, etc.                                     |
+| 🚇 Transporte público       | Tarjetas y consejos por ciudad.                                            |
+| ⚖️ Abogados migratorios     | Directorio por ciudad con idioma (ES/EN), ubicación y datos de contacto.   |
 
 ---
 
