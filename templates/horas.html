@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}Horas de Trabajo - Parce AU{% endblock %}
+
+{% block content %}
+<div class="hero-card">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <span class="badge bg-warning text-dark mb-2" style="font-weight:700;"><i class="bi bi-clock-history"></i> Casual work</span>
+            <h1 class="mb-2"><i class="bi bi-graph-up"></i> Calculadora de Horas</h1>
+            <p class="mb-0 lead">Registra tus turnos casuals y calcula tus ingresos quincenales.</p>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <span class="hero-emoji">⏱️</span>
+        </div>
+    </div>
+</div>
+
+<!-- Selector de quincena + Límite -->
+<div class="row mb-4 g-3">
+    <div class="col-12 col-md-6 fade-in-up stagger-1">
+        <div class="card summary-card tinted-info">
+            <div class="card-body">
+                <label for="quincena-selector" class="form-label"><i class="bi bi-calendar-range"></i> Período a visualizar</label>
+                <select id="quincena-selector" class="form-select">
+                    <option value="current">Quincena actual</option>
+                    <option value="all">Todas las quincenas</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 fade-in-up stagger-2">
+        <div class="card summary-card tinted-warning">
+            <div class="card-body">
+                <label for="limite-horas" class="form-label"><i class="bi bi-speedometer2"></i> Límite de horas por quincena</label>
+                <div class="input-group">
+                    <input type="number" id="limite-horas" class="form-control" min="0" step="0.5" value="48">
+                    <button class="btn btn-parce" type="button" id="btn-guardar-limite"><i class="bi bi-save"></i> Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alerta visual -->
+<div id="alert-container" class="mb-4 fade-in-up stagger-3"></div>
+
+<!-- Resumen visual (4 cards) -->
+<div class="row mb-4 g-3" id="summary-container">
+    <div class="col-6 col-lg-3 fade-in-up stagger-1">
+        <div class="card summary-card tinted-info h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="label">Horas acumuladas</div>
+                        <div class="value" id="summary-hours">0.00 h</div>
+                    </div>
+                    <i class="bi bi-clock-history value-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3 fade-in-up stagger-2">
+        <div class="card summary-card tinted-success h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="label">Ingreso estimado</div>
+                        <div class="value" id="summary-income">$0.00 AUD</div>
+                    </div>
+                    <i class="bi bi-cash-stack value-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3 fade-in-up stagger-3">
+        <div class="card summary-card tinted-warning h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="label">Horas restantes</div>
+                        <div class="value" id="summary-remaining">48.00 h</div>
+                    </div>
+                    <i class="bi bi-hourglass-split value-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3 fade-in-up stagger-4">
+        <div class="card summary-card tinted-primary h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="label">Turnos registrados</div>
+                        <div class="value" id="summary-shifts">0</div>
+                    </div>
+                    <i class="bi bi-calendar2-check value-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gráfico de horas por día de la semana -->
+<div class="row mb-4">
+    <div class="col-12 fade-in-up">
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <span><i class="bi bi-bar-chart-line"></i> Horas trabajadas por día</span>
+                <small class="text-muted" id="chart-period-label">Quincena actual</small>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="chart-horas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Formulario para agregar turno -->
+<div class="row mb-4">
+    <div class="col-12 fade-in-up">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-plus-circle"></i> Agregar turno
+            </div>
+            <div class="card-body">
+                <form id="form-turno" novalidate>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <label for="input-fecha" class="form-label">Fecha <span class="text-danger">*</span></label>
+                            <input type="date" id="input-fecha" class="form-control" required>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <label for="input-lugar" class="form-label">Lugar/Trabajo <span class="text-danger">*</span></label>
+                            <input type="text" id="input-lugar" class="form-control" placeholder="Ej: Café downtown" required>
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-3">
+                            <label for="input-inicio" class="form-label">Hora inicio <span class="text-danger">*</span></label>
+                            <input type="time" id="input-inicio" class="form-control" required>
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-3">
+                            <label for="input-salida" class="form-label">Hora salida <span class="text-danger">*</span></label>
+                            <input type="time" id="input-salida" class="form-control" required>
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-3">
+                            <label for="input-break" class="form-label">Break (min)</label>
+                            <input type="number" id="input-break" class="form-control" min="0" value="0">
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-3">
+                            <label for="input-pago" class="form-label">Pago/hora (AUD) <span class="text-danger">*</span></label>
+                            <input type="number" id="input-pago" class="form-control" step="0.01" min="0" required placeholder="0.00">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3 d-flex align-items-end">
+                            <button type="submit" class="btn btn-parce w-100" id="btn-agregar-turno"><i class="bi bi-plus-lg"></i> Agregar turno</button>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3 d-flex align-items-end">
+                            <button type="button" class="btn btn-outline-danger w-100" id="btn-limpiar-todo"><i class="bi bi-trash3"></i> Limpiar todo</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabla de turnos -->
+<div class="row">
+    <div class="col-12 fade-in-up">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-list-ul"></i> Turnos registrados
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0" id="tabla-turnos">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Lugar</th>
+                                <th>Inicio</th>
+                                <th>Salida</th>
+                                <th>Break</th>
+                                <th>Horas</th>
+                                <th>$/h</th>
+                                <th>Ingreso</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-turnos">
+                        </tbody>
+                    </table>
+                    <div id="empty-message" class="empty-state">
+                        <i class="bi bi-calendar-x empty-state-icon"></i>
+                        <div class="empty-state-title">No hay turnos registrados</div>
+                        <small>¡Agrega tu primer turno usando el formulario de arriba!</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='vendor/chart.umd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/horas.js') }}"></script>
+{% endblock %}

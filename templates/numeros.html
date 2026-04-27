@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Números Importantes - Parce AU{% endblock %}
+
+{% block content %}
+<div class="hero-card" style="background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);">
+    <span class="badge bg-warning text-dark mb-2" style="font-weight:700;"><i class="bi bi-shield-exclamation"></i> Emergencias</span>
+    <h1 class="mb-2"><i class="bi bi-telephone-fill"></i> Números Importantes</h1>
+    <p class="mb-0 lead">Contactos clave para emergencias y servicios en Australia.</p>
+</div>
+
+<div class="alert alert-bar danger mb-4 fade-in-up" role="alert">
+    <i class="bi bi-exclamation-octagon-fill"></i>
+    <div><strong>Recuerda:</strong> El 000 es <strong>ÚNICAMENTE</strong> para emergencias reales. Llamar sin razón puede ser delito.</div>
+</div>
+
+<div class="row g-4">
+    {% for item in numeros %}
+    <div class="col-12 col-md-6 col-lg-4 fade-in-up stagger-{{ loop.index if loop.index < 7 else 6 }}">
+        <div class="card phone-card h-100 {% if item.destacado %}border-danger{% endif %}" 
+             style="{% if item.destacado %}border-width: 3px; background: linear-gradient(180deg, #FEE2E2 0%, #FFFFFF 70%);{% endif %}">
+            <div class="card-body text-center p-4">
+                <div class="mb-3" style="font-size: 3.5rem; line-height: 1;">
+                    {{ item.emoji }}
+                </div>
+                <h5 class="card-title fw-bold">{{ item.nombre }}</h5>
+                <div class="number mb-3">{{ item.numero }}</div>
+                <p class="card-text text-muted small">{{ item.cuando_usar }}</p>
+                <a class="btn btn-parce btn-lg w-100" href="tel:{{ item.tel }}">
+                    <i class="bi bi-telephone-outbound-fill"></i> Llamar
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

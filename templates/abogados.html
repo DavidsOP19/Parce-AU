@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Abogados Migratorios | Parce AU{% endblock %}
+
+{% block content %}
+<div class="hero-card">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <span class="badge bg-warning text-dark mb-2" style="font-weight:700;"><i class="bi bi-shield-check"></i> Directorio</span>
+            <h1 class="mb-2"><i class="bi bi-briefcase-fill"></i> Abogados Migratorios</h1>
+            <p class="mb-0 lead">Directorio estilo páginas amarillas de abogados y agentes de migración en Australia. Filtra por ciudad o idioma y contacta directamente.</p>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <span class="hero-emoji">⚖️</span>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-bar info mb-4 fade-in-up">
+    <i class="bi bi-info-circle-fill"></i>
+    <div>
+        <strong>Importante:</strong> verifica siempre que tu agente esté registrado en
+        <a href="https://www.mara.gov.au/" target="_blank" rel="noopener" class="alert-link">MARA</a>
+        (Migration Agents Registration Authority) antes de contratarlo. Este directorio es informativo.
+    </div>
+</div>
+
+<!-- Buscador y filtros -->
+<div class="row g-3 mb-4 fade-in-up">
+    <div class="col-12 col-md-6">
+        <div class="input-group input-group-lg">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+            <input type="text" id="searchAbogados" class="form-control border-start-0" placeholder="Buscar por nombre, firma o dirección...">
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <select id="filterCiudad" class="form-select form-select-lg">
+            <option value="">Todas las ciudades</option>
+            {% for ciudad in ciudades_disponibles %}
+            <option value="{{ ciudad }}">{{ ciudad }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-6 col-md-3">
+        <select id="filterIdioma" class="form-select form-select-lg">
+            <option value="">Todos los idiomas</option>
+            <option value="es">&#127466;&#127480; Habla español</option>
+            <option value="en">&#127468;&#127463; Solo inglés</option>
+        </select>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="text-muted"><i class="bi bi-people-fill"></i> <strong id="totalCount">{{ total }}</strong> abogados/agentes en el directorio</div>
+    <div id="visibleCount" class="badge bg-primary-subtle text-primary-emphasis" style="padding: 0.5rem 0.85rem;">{{ total }} visibles</div>
+</div>
+
+<!-- Acordeón por ciudad -->
+<div class="accordion" id="abogadosAccordion">
+    {% for ciudad, lista in agrupados.items() %}
+    <div class="accordion-item ciudad-section" data-ciudad="{{ ciudad }}">
+        <h2 class="accordion-header" id="heading-{{ loop.index }}">
+            <button class="accordion-button {% if not loop.first %}collapsed{% endif %}" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapse-{{ loop.index }}"
+                    aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="collapse-{{ loop.index }}">
+                <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                <strong>{{ ciudad }}</strong>
+                <span class="ms-auto me-2 badge bg-primary" data-city-count="{{ ciudad }}">{{ lista|length }}</span>
+            </button>
+        </h2>
+        <div id="collapse-{{ loop.index }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}"
+             aria-labelledby="heading-{{ loop.index }}" data-bs-parent="#abogadosAccordion">
+            <div class="accordion-body p-3">
+                <div class="row g-3">
+                    {% for ab in lista %}
+                    <div class="col-12 col-lg-6 abogado-card-wrap"
+                         data-nombre="{{ (ab.nombre or '')|lower }}"
+                         data-firma="{{ (ab.firma or '')|lower }}"
+                         data-direccion="{{ (ab.direccion or '')|lower }}"
+                         data-ciudad="{{ ab.ciudad or '' }}"
+                         data-idiomas="{{ (ab.idiomas or [])|join(',') }}">
+                        <div class="card abogado-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-1">{{ ab.nombre or 'Sin nombre' }}</h5>
+                                        {% if ab.firma and ab.firma != ab.nombre %}<div class="text-muted small mb-1"><i class="bi bi-building"></i> {{ ab.firma }}</div>{% endif %}
+                                    </div>
+                                    <div class="text-end ms-2 d-flex gap-1" style="line-height: 1;">
+                                        {% if 'es' in (ab.idiomas or []) %}<img src="{{ url_for('static', filename='vendor/flags/es.svg') }}" alt="Español" title="Habla español" class="lang-flag">{% endif %}
+                                        {% if 'en' in (ab.idiomas or []) %}<img src="{{ url_for('static', filename='vendor/flags/gb.svg') }}" alt="Inglés" title="Habla inglés" class="lang-flag">{% endif %}
+                                    </div>
+                                </div>
+
+                                {% if ab.marn %}
+                                <div class="mb-2"><span class="badge bg-success-subtle text-success-emphasis"><i class="bi bi-patch-check-fill"></i> MARN {{ ab.marn }}</span></div>
+                                {% endif %}
+
+                                <ul class="list-unstyled small mb-3">
+                                    {% if ab.telefono %}<li class="mb-1"><i class="bi bi-telephone-fill text-success"></i> <a href="tel:{{ ab.telefono|replace(' ', '') }}" class="text-decoration-none">{{ ab.telefono }}</a></li>{% endif %}
+                                    {% if ab.email %}<li class="mb-1"><i class="bi bi-envelope-fill text-primary"></i> <a href="mailto:{{ ab.email }}" class="text-decoration-none">{{ ab.email }}</a></li>{% endif %}
+                                    {% if ab.direccion %}<li class="mb-1"><i class="bi bi-geo-alt-fill text-danger"></i> <span class="text-muted">{{ ab.direccion }}</span></li>{% endif %}
+                                </ul>
+
+                                <div class="d-flex flex-wrap gap-2">
+                                    {% if ab.sitio_web %}<a href="{{ ab.sitio_web }}" target="_blank" rel="noopener" class="btn btn-sm btn-parce" title="Sitio web"><i class="bi bi-globe"></i></a>{% endif %}
+                                    {% if ab.linkedin %}<a href="{{ ab.linkedin }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary" title="LinkedIn"><i class="bi bi-linkedin"></i></a>{% endif %}
+                                    {% if ab.facebook %}<a href="{{ ab.facebook }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary" title="Facebook"><i class="bi bi-facebook"></i></a>{% endif %}
+                                    {% if ab.instagram %}<a href="{{ ab.instagram }}" target="_blank" rel="noopener" class="btn btn-sm" style="color:#E4405F;border:1px solid #E4405F;" title="Instagram"><i class="bi bi-instagram"></i></a>{% endif %}
+                                    {% if ab.email %}<a href="mailto:{{ ab.email }}" class="btn btn-sm btn-outline-secondary ms-auto"><i class="bi bi-send"></i> Escribir</a>{% endif %}
+                                </div>
+
+                                {% if ab.notas %}
+                                <div class="mt-3 pt-2 border-top small text-muted"><i class="bi bi-chat-left-text"></i> {{ ab.notas }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Sin resultados -->
+<div id="noResultsAbogados" class="empty-state d-none mt-4">
+    <i class="bi bi-search empty-state-icon"></i>
+    <div class="empty-state-title">No se encontraron abogados</div>
+    <small>Prueba ajustando los filtros o el término de búsqueda.</small>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/abogados.js') }}"></script>
+{% endblock %}

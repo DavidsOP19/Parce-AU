@@ -1,0 +1,68 @@
+[
+  {
+    "id": "antes-viajar",
+    "titulo": "Antes de viajar",
+    "emoji": "🛫",
+    "tareas": [
+      {"id": "pasaporte-vigente", "texto": "Pasaporte vigente"},
+      {"id": "visa-aprobada", "texto": "Visa aprobada"},
+      {"id": "coe-institucion", "texto": "COE de la institución"},
+      {"id": "oshc-activo", "texto": "OSHC activo"},
+      {"id": "reserva-alojamiento", "texto": "Reserva temporal de alojamiento"},
+      {"id": "dinero-aud", "texto": "Dinero inicial en AUD"},
+      {"id": "copias-digitales", "texto": "Copias digitales de documentos"}
+    ]
+  },
+  {
+    "id": "primera-semana",
+    "titulo": "Primera semana en Australia",
+    "emoji": "🦘",
+    "tareas": [
+      {"id": "sim-card", "texto": "Comprar SIM card"},
+      {"id": "cuenta-bancaria", "texto": "Abrir cuenta bancaria"},
+      {"id": "tfn", "texto": "Solicitar TFN (Tax File Number)"},
+      {"id": "tarjeta-transporte", "texto": "Activar tarjeta de transporte"}
+    ]
+  },
+  {
+    "id": "trabajo",
+    "titulo": "Trabajo",
+    "emoji": "💼",
+    "tareas": [
+      {"id": "resume-australiano", "texto": "Crear resume estilo australiano"},
+      {"id": "fair-work", "texto": "Revisar derechos laborales (Fair Work)"},
+      {"id": "guardar-payslips", "texto": "Guardar payslips"}
+    ]
+  },
+  {
+    "id": "vivienda",
+    "titulo": "Vivienda",
+    "emoji": "🏠",
+    "tareas": [
+      {"id": "buscar-habitacion", "texto": "Buscar habitación"},
+      {"id": "ver-habitacion", "texto": "Ver habitación en persona antes de pagar"},
+      {"id": "bills-incluidos", "texto": "Confirmar si los bills están incluidos"},
+      {"id": "fotos-entrada", "texto": "Tomar fotos al entrar a la habitación"}
+    ]
+  },
+  {
+    "id": "documentos",
+    "titulo": "Documentos",
+    "emoji": "📄",
+    "tareas": [
+      {"id": "emergencia", "texto": "Guardar números de emergencia"},
+      {"id": "copia-pasaporte", "texto": "Guardar copia digital del pasaporte"},
+      {"id": "copia-visa", "texto": "Guardar copia digital de la visa"}
+    ]
+  },
+  {
+    "id": "salud",
+    "titulo": "Salud",
+    "emoji": "🏥",
+    "tareas": [
+      {"id": "oshc-tarjeta", "texto": "Activar OSHC y guardar tarjeta"},
+      {"id": "gp-cercano", "texto": "Registrarse con un GP (médico general) cercano"},
+      {"id": "emergencias-000", "texto": "Tener teléfono de emergencias 000 a la mano"}
+    ]
+  }
+]

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Checklist | Parce AU{% endblock %}
+
+{% block content %}
+<div class="hero-card">
+    <span class="badge bg-success mb-2" style="font-weight:700;"><i class="bi bi-check2-square"></i> Progreso</span>
+    <h1 class="mb-2"><i class="bi bi-list-check"></i> Tu Checklist para Australia</h1>
+    <p class="mb-0 lead">Marca las tareas completadas y rastrea tu progreso en la adaptación a Australia.</p>
+</div>
+
+<!-- Resumen General -->
+<div class="row mb-4">
+    <div class="col-12 fade-in-up">
+        <div class="card summary-card tinted-success">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <div class="label">Progreso total</div>
+                        <div class="value" id="total-count">0 / 0</div>
+                    </div>
+                    <div id="total-percentage" class="fw-bold" style="font-size: 2rem; color: var(--parce-success);">0%</div>
+                </div>
+                <div class="progress progress-thin">
+                    <div id="total-progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <button class="btn btn-sm btn-outline-danger mt-3" id="reset-btn">
+                    <i class="bi bi-arrow-counterclockwise"></i> Reiniciar checklist
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Secciones -->
+<div class="row" id="checklists-container">
+    {% for checklist in checklists %}
+    <div class="col-lg-6 mb-4 fade-in-up stagger-{{ loop.index if loop.index < 7 else 6 }}">
+        <div class="card h-100">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <span style="font-size: 2rem; margin-right: 0.75rem;">{{ checklist.emoji }}</span>
+                    <h5 class="mb-0 flex-grow-1">{{ checklist.titulo }}</h5>
+                </div>
+            
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="label" style="margin-bottom: 0;">Tareas completadas:</span>
+                <span class="fw-bold" data-section-count="{{ checklist.id }}">0 / {{ checklist.tareas|length }}</span>
+            </div>
+            
+            <div class="progress progress-thin mb-3">
+                <div 
+                    class="progress-bar bg-success" 
+                    role="progressbar" 
+                    style="width: 0%"
+                    data-section-bar="{{ checklist.id }}"
+                    aria-valuenow="0" 
+                    aria-valuemin="0" 
+                    aria-valuemax="100">
+                </div>
+            </div>
+
+            <div class="checklist-items">
+                {% for tarea in checklist.tareas %}
+                <div class="form-check mb-2">
+                    <input 
+                        class="form-check-input checklist-checkbox" 
+                        type="checkbox" 
+                        id="task-{{ checklist.id }}-{{ tarea.id }}"
+                        data-section="{{ checklist.id }}"
+                        data-task="{{ tarea.id }}">
+                    <label class="form-check-label" for="task-{{ checklist.id }}-{{ tarea.id }}">
+                        {{ tarea.texto }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    .completed {
+        text-decoration: line-through;
+        color: var(--parce-muted);
+    }
+</style>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/checklist.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,111 @@
+[
+  {
+    "categoria": "trabajo",
+    "titulo_categoria": "Trabajo",
+    "emoji": "💼",
+    "plantillas": [
+      {
+        "id": "casual-job-search",
+        "titulo": "Mensaje para buscar trabajo casual",
+        "descripcion": "Para enviar a managers o por gumtree pidiendo oportunidades casuales.",
+        "texto": "Hi, my name is [Your name]. I'm an international student currently looking for casual work in [city/area]. I'm available [days/hours] and happy to bring my resume in person. Could you let me know if you have any opportunities or if I can drop off my resume? Thanks for your time!"
+      },
+      {
+        "id": "walk-in-hiring",
+        "titulo": "Mensaje para preguntar si están contratando (walk-in)",
+        "descripcion": "Para ir en persona y preguntar por oportunidades de trabajo.",
+        "texto": "Hi, I was wondering if you're currently hiring or if you might have any casual shifts available? I'm a reliable and hard-working person, and I have my resume with me if you'd like to take a look. When would be the best time to speak with a manager?"
+      }
+    ]
+  },
+  {
+    "categoria": "vivienda",
+    "titulo_categoria": "Vivienda",
+    "emoji": "🏠",
+    "plantillas": [
+      {
+        "id": "room-inquiry",
+        "titulo": "Mensaje para preguntar por una habitación disponible",
+        "descripcion": "Para contactar propietarios o agentes sobre disponibilidad de habitaciones.",
+        "texto": "Hi, I saw your listing for the room in [suburb/area]. I'm interested in learning more about the property. Could you tell me when it's available, what utilities are included, and whether I can arrange a viewing? I'm looking to move in around [date]. Thanks!"
+      },
+      {
+        "id": "inspection-request",
+        "titulo": "Mensaje para pedir inspección antes de pagar",
+        "descripcion": "Para solicitar verificar la propiedad antes de hacer algún depósito.",
+        "texto": "Hi, I'm very interested in this property, but before I make any financial commitment, I'd like to arrange an inspection to see the condition of the room and ask any questions I might have. When would be a good time for you? Thanks!"
+      }
+    ]
+  },
+  {
+    "categoria": "universidad",
+    "titulo_categoria": "Universidad",
+    "emoji": "🎓",
+    "plantillas": [
+      {
+        "id": "class-absence",
+        "titulo": "Mensaje para avisar al docente que no puedes asistir a clase",
+        "descripcion": "Para notificar ausencia y mantener buena relación con profesores.",
+        "texto": "Hi [Lecturer/Professor name], I'm writing to let you know that I won't be able to attend your class on [date/day] due to [reason: illness/work/personal matter]. I will catch up on any materials or notes I miss. I apologize for any inconvenience. Thank you for your understanding."
+      },
+      {
+        "id": "assignment-extension",
+        "titulo": "Mensaje para pedir extensión de un assignment",
+        "descripcion": "Para solicitar más tiempo en un trabajo académico con justificación.",
+        "texto": "Hi [Lecturer name], I hope this message finds you well. I am requesting an extension for the [assignment name] due on [due date]. I have encountered [unexpected circumstances/illness/other valid reason] and would appreciate if I could submit it by [proposed new date]. I appreciate your consideration. Thank you."
+      }
+    ]
+  },
+  {
+    "categoria": "banco",
+    "titulo_categoria": "Banco",
+    "emoji": "🏦",
+    "plantillas": [
+      {
+        "id": "student-account",
+        "titulo": "Mensaje/email para preguntar al banco por una cuenta de estudiante",
+        "descripcion": "Para informarse sobre cuentas especiales para estudiantes internacionales.",
+        "texto": "Hi, I'm an international student studying at [University name] and I'm looking to open a bank account in Australia. Could you provide information about student accounts, the documentation required, and any fees that might apply? I'd also like to know about online banking and international transfer options. Thank you!"
+      }
+    ]
+  },
+  {
+    "categoria": "transporte",
+    "titulo_categoria": "Transporte",
+    "emoji": "🚌",
+    "plantillas": [
+      {
+        "id": "transport-help",
+        "titulo": "Mensaje para pedir ayuda con transporte o tarjeta perdida",
+        "descripcion": "Para contactar al operador de transporte sobre problemas con tarjetas o consultas.",
+        "texto": "Hi, I need help with my [Opal/travel card]. [I've lost my card and need to block it / I'm having issues with my account / I need to replace my card]. Could you please guide me through the process? What information do I need to provide and what are the steps? Thank you for your assistance."
+      }
+    ]
+  },
+  {
+    "categoria": "reclamos",
+    "titulo_categoria": "Reclamos",
+    "emoji": "⚖️",
+    "plantillas": [
+      {
+        "id": "payment-dispute",
+        "titulo": "Mensaje para reclamar un pago incorrecto (a un empleador)",
+        "descripcion": "Para reportar discrepancias salariales o pagos faltantes.",
+        "texto": "Hi [Manager/HR name], I have reviewed my payslip from [date] and noticed a discrepancy. According to my records, I worked [X hours] but was only paid for [Y hours], resulting in a shortfall of $[amount]. Could you please check your records and advise how this will be corrected? I'd appreciate a prompt resolution. Thank you."
+      }
+    ]
+  },
+  {
+    "categoria": "salud",
+    "titulo_categoria": "Salud",
+    "emoji": "🏥",
+    "plantillas": [
+      {
+        "id": "gp-appointment",
+        "titulo": "Mensaje para pedir una cita médica con un GP",
+        "descripcion": "Para contactar consultorio médico y agendar atención.",
+        "texto": "Hi, I would like to book an appointment with a GP at your clinic. I'm experiencing [symptoms/reason for visit]. I am available on [mention preferred days/times]. How long does an appointment usually take, and what information do I need to bring with me? I'm a new patient, so please let me know if there are any forms to fill out beforehand. Thanks!"
+      }
+    ]
+  }
+]

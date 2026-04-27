@@ -1,0 +1,146 @@
+[
+  {
+    "id": "melbourne",
+    "ciudad": "Melbourne",
+    "estado": "VIC",
+    "emoji": "🚋",
+    "tarjeta": "myki",
+    "medios": ["Trenes", "Tranvías", "Buses"],
+    "como_pagar": "Compra una tarjeta myki en estaciones, 7-Eleven o máquinas. Tócala al entrar y al salir en trenes y buses; en tranvías solo al entrar (excepto Free Tram Zone).",
+    "como_recargar": "En máquinas de estaciones, 7-Eleven, supermercados con logo myki, o por la app PTV. También online en ptv.vic.gov.au.",
+    "apps": ["PTV (Public Transport Victoria)", "Google Maps"],
+    "consejos": [
+      "Pide la concession card si tu visa de estudiante lo permite (algunos estudiantes internacionales no califican; verifica en PTV).",
+      "Aprovecha la Free Tram Zone en el CBD: tranvías gratis dentro de esa área.",
+      "Recarga con saldo suficiente: si te quedas en cero, te multan."
+    ],
+    "errores_comunes": [
+      "Olvidar 'tap on' en el tranvía fuera de la Free Tram Zone.",
+      "Olvidar 'tap off' al salir del tren (te cobran tarifa máxima).",
+      "Comprar tarjeta sin recargar saldo."
+    ],
+    "enlaces": [
+      "https://www.ptv.vic.gov.au"
+    ]
+  },
+  {
+    "id": "sydney",
+    "ciudad": "Sydney",
+    "estado": "NSW",
+    "emoji": "🚂",
+    "tarjeta": "Opal (tarjeta) o contactless",
+    "medios": ["Trenes", "Buses", "Ferries", "Tranvías (Light Rail)"],
+    "como_pagar": "Compra tarjeta Opal en estaciones, kioscos o máquinas. Puedes usar tu tarjeta de crédito/débito contactless directamente (Mastercard, Visa) o smartphone. Toca al entrar y al salir en todos los medios.",
+    "como_recargar": "Automático si usas tarjeta contactless. Para Opal: en máquinas de estaciones, kioscos, supermercados Coles y Woolworths, o por la app Opal.",
+    "apps": ["Opal", "Google Maps", "TripView (planificador de viajes)"],
+    "consejos": [
+      "La tarifa diaria tiene un máximo: una vez alcanzado, viaja gratis el resto del día.",
+      "Los domingos el máximo es más bajo que otros días.",
+      "Estudiantes internacionales pueden aplicar a descuentos; verifica con tu institución."
+    ],
+    "errores_comunes": [
+      "Olvidar 'tap off': te cobran tarifa máxima.",
+      "No verificar el saldo antes de viajar.",
+      "Confundir zonas y pagar tarifa incorrecta."
+    ],
+    "enlaces": [
+      "https://www.transportnsw.info/"
+    ]
+  },
+  {
+    "id": "brisbane",
+    "ciudad": "Brisbane / Gold Coast",
+    "estado": "QLD",
+    "emoji": "🚆",
+    "tarjeta": "go card",
+    "medios": ["Trenes", "Buses", "Ferries", "Tranvía (Light Rail)"],
+    "como_pagar": "Compra una go card en estaciones, máquinas o CityHopper. Tócala al entrar y al salir. También puedes usar tarjeta contactless (Mastercard/Visa) en algunos terminales.",
+    "como_recargar": "En máquinas de estaciones, agencias de correos (post offices), kioscos, supermercados, o por la app go card.",
+    "apps": ["go card", "Google Maps", "TripView (planificador)"],
+    "consejos": [
+      "Los viajeros frecuentes pueden ahorrar dinero; verifica las opciones de pase semanal/mensual.",
+      "Estudiantes universitarios califican a descuentos especiales.",
+      "CityHopper (ferry en Brisbane) es gratis en ciertos horarios para los titulares de go card."
+    ],
+    "errores_comunes": [
+      "Olvidar 'tap off' en el tren o ferry.",
+      "No tener saldo suficiente (no te dejan pasar).",
+      "Comprar tarjeta pero no recargar."
+    ],
+    "enlaces": [
+      "https://www.translink.com.au/"
+    ]
+  },
+  {
+    "id": "perth",
+    "ciudad": "Perth",
+    "estado": "WA",
+    "emoji": "🚌",
+    "tarjeta": "SmartRider",
+    "medios": ["Trenes", "Buses", "Ferries"],
+    "como_pagar": "Compra una tarjeta SmartRider en estaciones, máquinas, Transperth offices, o supermercados. Tócala al subir a cualquier transporte. También aceptan tarjetas contactless en algunos servicios.",
+    "como_recargar": "En máquinas de estaciones, agencias Transperth, kioscos de ticket, supermercados seleccionados, o por teléfono/online.",
+    "apps": ["Transperth Journey Planner", "Google Maps"],
+    "consejos": [
+      "Estudiantes internacionales pueden obtener descuentos especiales; consulta en Transperth.",
+      "Dentro del Free Transit Zone en el CBD, muchos servicios son gratis.",
+      "Planifica con anticipación: algunos servicios tienen frecuencia limitada en fines de semana."
+    ],
+    "errores_comunes": [
+      "Olvidar tocar la tarjeta (no registra entrada).",
+      "Viajar en Free Transit Zone y tocar innecesariamente.",
+      "No llevar suficiente saldo."
+    ],
+    "enlaces": [
+      "https://www.transperth.wa.gov.au/"
+    ]
+  },
+  {
+    "id": "adelaide",
+    "ciudad": "Adelaide",
+    "estado": "SA",
+    "emoji": "🚊",
+    "tarjeta": "metroCARD",
+    "medios": ["Trenes", "Buses", "Tranvías"],
+    "como_pagar": "Compra una tarjeta metroCARD en estaciones, máquinas, agencias de correos o kioscos. Tócala al entrar (en trenes y tranvías) y en algunos buses. También aceptan tarjetas contactless.",
+    "como_recargar": "En máquinas en estaciones, post offices, kioscos autorizados, o por teléfono. Verifica opciones online en Adelaide Metro.",
+    "apps": ["Adelaide Metro Journey Planner", "Google Maps"],
+    "consejos": [
+      "La tarifa depende de zonas; planifica tu ruta para optimizar costos.",
+      "Estudiantes pueden solicitar descuentos especiales con documentación válida.",
+      "Viajes ilimitados en ciertos períodos pueden ser más económicos que tarifa por viaje."
+    ],
+    "errores_comunes": [
+      "No saber en qué zona estás viajando.",
+      "Olvidar la tarjeta en casa (no tienes alternativa).",
+      "No recargar a tiempo."
+    ],
+    "enlaces": [
+      "https://www.adelaidemetro.com.au/"
+    ]
+  },
+  {
+    "id": "canberra",
+    "ciudad": "Canberra",
+    "estado": "ACT",
+    "emoji": "🚐",
+    "tarjeta": "MyWay",
+    "medios": ["Buses"],
+    "como_pagar": "Compra una tarjeta MyWay en estaciones de ticket, algunas tiendas o máquinas. Tócala al subir al bus. También aceptan tarjetas contactless en buses equipados.",
+    "como_recargar": "En máquinas en centros de tickets, algunos supermercados, tiendas autorizadas, o por teléfono/online en Transport Canberra.",
+    "apps": ["Transport Canberra Journey Planner", "Google Maps"],
+    "consejos": [
+      "Canberra es una ciudad más pequeña; los buses conectan bien todo. Planifica con app.",
+      "Descuentos para estudiantes están disponibles; verifica con tu institución.",
+      "Hay zonas de viaje diferentes; elige el tarjeta adecuada según donde vivas/estudies."
+    ],
+    "errores_comunes": [
+      "Confundir zonas de viaje (1, 2, 3).",
+      "No tocar la tarjeta (no registra).",
+      "Olvidar que es mayormente transporte por bus (no hay trenes urbanos)."
+    ],
+    "enlaces": [
+      "https://www.transport.act.gov.au/"
+    ]
+  }
+]

@@ -1,0 +1,45 @@
+[
+  {
+    "nombre": "Emergencias",
+    "numero": "000",
+    "tel": "000",
+    "emoji": "🚨",
+    "cuando_usar": "Solo para emergencias REALES: incendios, ambulancia, policía cuando hay peligro inmediato. Funciona 24/7. Pueden atenderte en español.",
+    "destacado": true
+  },
+  {
+    "nombre": "Policía no urgente",
+    "numero": "131 444",
+    "tel": "131444",
+    "emoji": "👮",
+    "cuando_usar": "Para reportar situaciones que NO son emergencias: robos sin peligro inmediato, vandalismo, ruido, etc."
+  },
+  {
+    "nombre": "Crime Stoppers",
+    "numero": "1800 333 000",
+    "tel": "1800333000",
+    "emoji": "🕵️",
+    "cuando_usar": "Reportar delitos de forma anónima. Tu identidad queda protegida."
+  },
+  {
+    "nombre": "Fair Work",
+    "numero": "13 13 94",
+    "tel": "131394",
+    "emoji": "⚖️",
+    "cuando_usar": "Consultas sobre derechos laborales: salario mínimo, payslips, acoso, despido injusto. Si tu empleador no te paga lo justo, llama aquí."
+  },
+  {
+    "nombre": "Home Affairs (dentro de Australia)",
+    "numero": "131 881",
+    "tel": "131881",
+    "emoji": "🛂",
+    "cuando_usar": "Consultas de inmigración: visa, condiciones, renovaciones. Solo para llamadas dentro de Australia."
+  },
+  {
+    "nombre": "Lifeline",
+    "numero": "13 11 14",
+    "tel": "131114",
+    "emoji": "💚",
+    "cuando_usar": "Línea de apoyo emocional 24/7. Si te sientes solo, ansioso o en crisis, llama. No estás solo, parce."
+  }
+]

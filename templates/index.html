@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}Parce AU — Inicio{% endblock %}
+
+{% block content %}
+<section class="hero-card">
+    <div class="row align-items-center g-3 position-relative">
+        <div class="col-md-8">
+            <span class="badge bg-warning text-dark mb-3 fade-in-up" style="font-weight:700; padding:0.45em 0.9em;">
+                <i class="bi bi-stars"></i> Hecho para parceros
+            </span>
+            <h1 class="mb-2 fade-in-up stagger-1">¡Bienvenido, parce! 👋</h1>
+            <p class="mb-0 lead fade-in-up stagger-2">Tu guía rápida para sobrevivir como estudiante colombiano en Australia.</p>
+        </div>
+        <div class="col-md-4 text-center d-none d-md-block">
+            <span class="hero-emoji fade-in-up stagger-3" style="display:inline-block;">🦘</span>
+        </div>
+    </div>
+</section>
+
+<div class="d-flex align-items-center justify-content-between mb-3 mt-4">
+    <h2 class="h4 mb-0"><i class="bi bi-grid-1x2-fill text-primary"></i> Módulos</h2>
+    <small class="text-muted d-none d-sm-block">Toca cualquiera para empezar</small>
+</div>
+
+<div class="row g-3">
+    <div class="col-12 col-sm-6 col-lg-4">
+        <a href="{{ url_for('horas') }}" class="text-decoration-none text-reset">
+            <div class="card module-card p-4 h-100 fade-in-up stagger-1">
+                <div class="d-flex align-items-start gap-3 mb-2">
+                    <span class="emoji">⏱️</span>
+                    <div>
+                        <h3 class="h5 mb-1">Calculadora de horas</h3>
+                        <small class="text-muted">Casual work · Fortnightly</small>
+                    </div>
+                </div>
+                <p class="text-muted small flex-grow-1 mb-3">Controla tus turnos y no te pases del límite de tu visa.</p>
+                <span class="btn btn-parce btn-sm align-self-start"><i class="bi bi-arrow-right"></i> Entrar</span>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <a href="{{ url_for('finanzas') }}" class="text-decoration-none text-reset">
+            <div class="card module-card p-4 h-100 fade-in-up stagger-2">
+                <div class="d-flex align-items-start gap-3 mb-2">
+                    <span class="emoji">💰</span>
+                    <div>
+                        <h3 class="h5 mb-1">Control financiero</h3>
+                        <small class="text-muted">AUD · Presupuesto</small>
+                    </div>
+                </div>
+                <p class="text-muted small flex-grow-1 mb-3">Registra ingresos, gastos y revisa tu presupuesto diario.</p>
+                <span class="btn btn-parce btn-sm align-self-start"><i class="bi bi-arrow-right"></i> Entrar</span>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <a href="{{ url_for('checklist') }}" class="text-decoration-none text-reset">
+            <div class="card module-card p-4 h-100 fade-in-up stagger-3">
+                <div class="d-flex align-items-start gap-3 mb-2">
+                    <span class="emoji">✅</span>
+                    <div>
+                        <h3 class="h5 mb-1">Checklist</h3>
+                        <small class="text-muted">Pre & post-llegada</small>
+                    </div>
+                </div>
+                <p class="text-muted small flex-grow-1 mb-3">Tareas para antes y después de tu llegada.</p>
+                <span class="btn btn-parce btn-sm align-self-start"><i class="bi bi-arrow-right"></i> Entrar</span>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <a href="{{ url_for('plantillas') }}" class="text-decoration-none text-reset">
+            <div class="card module-card p-4 h-100 fade-in-up stagger-4">
+                <div class="d-flex align-items-start gap-3 mb-2">
+                    <span class="emoji">💬</span>
+                    <div>
+                        <h3 class="h5 mb-1">Plantillas en inglés</h3>
+                        <small class="text-muted">Copy & paste</small>
+                    </div>
+                </div>
+                <p class="text-muted small flex-grow-1 mb-3">Mensajes listos para copiar y pegar.</p>
+                <span class="btn btn-parce btn-sm align-self-start"><i class="bi bi-arrow-right"></i> Entrar</span>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <a href="{{ url_for('numeros') }}" class="text-decoration-none text-reset">
+            <div class="card module-card p-4 h-100 fade-in-up stagger-5">
+                <div class="d-flex align-items-start gap-3 mb-2">
+                    <span class="emoji">📞</span>
+                    <div>
+                        <h3 class="h5 mb-1">Números importantes</h3>
+                        <small class="text-muted">Emergencias · Servicios</small>
+                    </div>
+                </div>
+                <p class="text-muted small flex-grow-1 mb-3">Emergencias, policía, Fair Work y más.</p>
+                <span class="btn btn-parce btn-sm align-self-start"><i class="bi bi-arrow-right"></i> Entrar</span>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <a href="{{ url_for('transporte') }}" class="text-decoration-none text-reset">
+            <div class="card module-card p-4 h-100 fade-in-up stagger-6">
+                <div class="d-flex align-items-start gap-3 mb-2">
+                    <span class="emoji">🚇</span>
+                    <div>
+                        <h3 class="h5 mb-1">Transporte público</h3>
+                        <small class="text-muted">myki · Opal · go card</small>
+                    </div>
+                </div>
+                <p class="text-muted small flex-grow-1 mb-3">Tarjetas y consejos por ciudad australiana.</p>
+                <span class="btn btn-parce btn-sm align-self-start"><i class="bi bi-arrow-right"></i> Entrar</span>
+            </div>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <a href="{{ url_for('abogados') }}" class="text-decoration-none text-reset">
+            <div class="card module-card p-4 h-100 fade-in-up stagger-6">
+                <div class="d-flex align-items-start gap-3 mb-2">
+                    <span class="emoji">⚖️</span>
+                    <div>
+                        <h3 class="h5 mb-1">Abogados migratorios</h3>
+                        <small class="text-muted">Directorio · 7 ciudades</small>
+                    </div>
+                </div>
+                <p class="text-muted small flex-grow-1 mb-3">Contactos de abogados y agentes de migración con filtro por idioma.</p>
+                <span class="btn btn-parce btn-sm align-self-start"><i class="bi bi-arrow-right"></i> Entrar</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="alert alert-bar ok mt-5 fade-in-up stagger-6" role="alert">
+    <i class="bi bi-shield-lock-fill"></i>
+    <div>
+        <strong>Tus datos son tuyos.</strong>
+        Toda la información que ingreses se guarda solo en tu navegador. No se envía a ningún servidor.
+    </div>
+</div>
+{% endblock %}

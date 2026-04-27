@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+{% block title %}Finanzas - Parce AU{% endblock %}
+
+{% block content %}
+<div class="hero-card">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <span class="badge bg-warning text-dark mb-2" style="font-weight:700;"><i class="bi bi-piggy-bank"></i> AUD</span>
+            <h1 class="mb-2"><i class="bi bi-wallet2"></i> Control Financiero</h1>
+            <p class="mb-0 lead">Registra ingresos, gastos y revisa tu presupuesto diario.</p>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <span class="hero-emoji">💰</span>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between mb-4 gap-2">
+    <h2 class="h5 mb-0"><i class="bi bi-graph-up-arrow text-primary"></i> Resumen</h2>
+    <button id="btnClearAll" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3"></i> Limpiar todos</button>
+</div>
+
+<!-- Resumen Visual: 4 Cards -->
+<div class="row mb-4 g-3">
+    <div class="col-6 col-lg-3 fade-in-up stagger-1">
+        <div class="card summary-card tinted-success h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="label">Ingresos</div>
+                        <div class="value text-success" id="totalIngresos">$0.00 AUD</div>
+                    </div>
+                    <i class="bi bi-arrow-down-circle-fill value-icon text-success"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3 fade-in-up stagger-2">
+        <div class="card summary-card tinted-danger h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="label">Gastos</div>
+                        <div class="value text-danger" id="totalGastos">$0.00 AUD</div>
+                    </div>
+                    <i class="bi bi-arrow-up-circle-fill value-icon text-danger"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3 fade-in-up stagger-3">
+        <div class="card summary-card tinted-info h-100" id="cardSaldo">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="label">Saldo</div>
+                        <div class="value" id="saldoDisponible">$0.00 AUD</div>
+                    </div>
+                    <i class="bi bi-bank value-icon text-info"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3 fade-in-up stagger-4">
+        <div class="card summary-card tinted-primary h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="label">Diario sugerido</div>
+                        <div class="value" id="presupuestoDiario">$0.00 AUD</div>
+                    </div>
+                    <i class="bi bi-calendar-day value-icon text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Progress + Donut chart -->
+<div class="row mb-4 g-3">
+    <div class="col-12 col-lg-7 fade-in-up">
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-pie-chart-fill"></i> Gastos por categoría</div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="chart-gastos"></canvas>
+                </div>
+                <div id="chart-empty" class="empty-state d-none">
+                    <i class="bi bi-pie-chart empty-state-icon"></i>
+                    <div class="empty-state-title">Sin gastos registrados</div>
+                    <small>Agrega un gasto para ver la distribución por categoría.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-5 fade-in-up">
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-speedometer"></i> Porcentaje gastado</div>
+            <div class="card-body d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <strong>Del total de ingresos</strong>
+                    <span id="porcentajeLabel" class="badge bg-success" style="font-size: 1rem;">0%</span>
+                </div>
+                <div class="progress" style="height: 16px;">
+                    <div id="progressBar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <small class="text-muted mt-3">
+                    <i class="bi bi-info-circle"></i>
+                    Verde &lt;50%, amarillo 50-80%, rojo &gt;80%.
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dos Formularios: Ingreso y Gasto -->
+<div class="row mb-4 g-3">
+    <!-- Formulario Ingreso -->
+    <div class="col-12 col-lg-6 fade-in-up">
+        <div class="card h-100">
+            <div class="card-header text-success">
+                <i class="bi bi-arrow-down-circle"></i> Agregar Ingreso
+            </div>
+            <div class="card-body">
+                <form id="formIngreso">
+                    <div class="mb-3">
+                        <label for="ingresoDesc" class="form-label">Descripción <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="ingresoDesc" required placeholder="Ej: Salario semanal">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ingresoCategoria" class="form-label">Categoría <span class="text-danger">*</span></label>
+                        <select class="form-select" id="ingresoCategoria" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="Trabajo">💼 Trabajo</option>
+                            <option value="Propina">💵 Propina</option>
+                            <option value="Transferencia familiar">👨‍👩‍👧 Transferencia familiar</option>
+                            <option value="Reembolso">↩️ Reembolso</option>
+                            <option value="Otros">✨ Otros</option>
+                        </select>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <label for="ingresoValor" class="form-label">Valor (AUD) <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="ingresoValor" step="0.01" min="0" required placeholder="0.00">
+                        </div>
+                        <div class="col-6">
+                            <label for="ingresoFecha" class="form-label">Fecha</label>
+                            <input type="date" class="form-control" id="ingresoFecha">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-parce w-100 mt-3"><i class="bi bi-plus-lg"></i> Agregar ingreso</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario Gasto -->
+    <div class="col-12 col-lg-6 fade-in-up">
+        <div class="card h-100">
+            <div class="card-header text-danger">
+                <i class="bi bi-arrow-up-circle"></i> Agregar Gasto
+            </div>
+            <div class="card-body">
+                <form id="formGasto">
+                    <div class="mb-3">
+                        <label for="gastoDesc" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="gastoDesc" placeholder="Ej: Almuerzo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="gastoCategoria" class="form-label">Categoría <span class="text-danger">*</span></label>
+                        <select class="form-select" id="gastoCategoria" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="Renta">🏠 Renta</option>
+                            <option value="Comida">🍔 Comida</option>
+                            <option value="Transporte">🚌 Transporte</option>
+                            <option value="Celular">📱 Celular</option>
+                            <option value="Salud">🏥 Salud</option>
+                            <option value="Estudio">📚 Estudio</option>
+                            <option value="Salidas">🎉 Salidas</option>
+                            <option value="Ropa">👕 Ropa</option>
+                            <option value="Ahorro">💰 Ahorro</option>
+                            <option value="Emergencias">🚨 Emergencias</option>
+                            <option value="Otros">✨ Otros</option>
+                        </select>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <label for="gastoValor" class="form-label">Valor (AUD) <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="gastoValor" step="0.01" min="0" required placeholder="0.00">
+                        </div>
+                        <div class="col-6">
+                            <label for="gastoFecha" class="form-label">Fecha</label>
+                            <input type="date" class="form-control" id="gastoFecha">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-parce w-100 mt-3"><i class="bi bi-plus-lg"></i> Agregar gasto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabla de Movimientos -->
+<div class="card mb-4 fade-in-up">
+    <div class="card-header"><i class="bi bi-list-ul"></i> Movimientos</div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Categoría</th>
+                        <th>Descripción</th>
+                        <th>Valor</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyMovimientos">
+                    <tr>
+                        <td colspan="6">
+                            <div class="empty-state">
+                                <i class="bi bi-inbox empty-state-icon"></i>
+                                <div class="empty-state-title">No hay movimientos</div>
+                                <small>Agrega un ingreso o gasto para empezar.</small>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='vendor/chart.umd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/finanzas.js') }}"></script>
+{% endblock %}

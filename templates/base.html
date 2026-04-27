@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1E40AF">
+    <title>{% block title %}Parce AU{% endblock %}</title>
+
+    <!-- Preload tipografía principal para evitar FOUT -->
+    <link rel="preload" href="{{ url_for('static', filename='vendor/fonts/inter/inter-600.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ url_for('static', filename='vendor/fonts/inter/inter-700.woff2') }}" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/icons/bootstrap-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-parce sticky-top" id="parceNavbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{ url_for('index') }}">
+                <span class="navbar-brand-emoji">🇨🇴🇦🇺</span>Parce AU
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                    aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link {% if active=='home' %}active{% endif %}" href="{{ url_for('index') }}"><i class="bi bi-house-door"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link {% if active=='horas' %}active{% endif %}" href="{{ url_for('horas') }}"><i class="bi bi-clock"></i> Horas</a></li>
+                    <li class="nav-item"><a class="nav-link {% if active=='finanzas' %}active{% endif %}" href="{{ url_for('finanzas') }}"><i class="bi bi-wallet2"></i> Finanzas</a></li>
+                    <li class="nav-item"><a class="nav-link {% if active=='checklist' %}active{% endif %}" href="{{ url_for('checklist') }}"><i class="bi bi-check2-square"></i> Checklist</a></li>
+                    <li class="nav-item"><a class="nav-link {% if active=='plantillas' %}active{% endif %}" href="{{ url_for('plantillas') }}"><i class="bi bi-chat-square-text"></i> Plantillas</a></li>
+                    <li class="nav-item"><a class="nav-link {% if active=='numeros' %}active{% endif %}" href="{{ url_for('numeros') }}"><i class="bi bi-telephone"></i> Números</a></li>
+                    <li class="nav-item"><a class="nav-link {% if active=='transporte' %}active{% endif %}" href="{{ url_for('transporte') }}"><i class="bi bi-bus-front"></i> Transporte</a></li>
+                    <li class="nav-item"><a class="nav-link {% if active=='abogados' %}active{% endif %}" href="{{ url_for('abogados') }}"><i class="bi bi-briefcase"></i> Abogados</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4 fade-in">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="parce-footer text-center">
+        <div class="container">
+            <small>
+                <i class="bi bi-info-circle"></i>
+                Parce AU es una <strong>guía informativa</strong> para estudiantes.
+                No reemplaza asesoría migratoria, legal, financiera ni médica.
+            </small>
+        </div>
+    </footer>
+
+    <!-- Toast container global -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1080;" id="parce-toast-container"></div>
+
+    <script src="{{ url_for('static', filename='vendor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Glassmorphism navbar al hacer scroll
+        (function() {
+            const nav = document.getElementById('parceNavbar');
+            if (!nav) return;
+            const onScroll = () => {
+                if (window.scrollY > 8) nav.classList.add('scrolled');
+                else nav.classList.remove('scrolled');
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        })();
+    </script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
