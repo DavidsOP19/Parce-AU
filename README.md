@@ -1,27 +1,26 @@
-# 🇨🇴🇦🇺 Parce AU
+# 🇨🇴 Parce AU
 
-> **Tu guía rápida para sobrevivir como estudiante colombiano en Australia.**
+> Your quick guide to survive as a Colombian in Australia.
 
-Aplicación web monolítica (Flask + Jinja2 + Bootstrap 5 + JS Vanilla) con herramientas prácticas: calculadora de horas, control financiero, checklist de llegada, plantillas en inglés, números importantes, guía de transporte público y directorio de abogados migratorios por ciudad.
+A monolithic web application (Flask + Jinja2 + Bootstrap 5 + Vanilla JS) 
+with practical tools for Colombians living in Australia.
 
-- ✅ Sin login ni registro.
-- ✅ Sin base de datos.
-- ✅ Sin APIs externas.
-- ✅ Funciona offline (Bootstrap incluido localmente).
-- ✅ Datos del usuario en `localStorage` (privados, en su propio navegador).
+✅ No login or registration required  
+✅ No external database  
+✅ No external APIs  
+✅ Works offline (Bootstrap included locally)  
+✅ User data stored in localStorage (private, on your own browser)
+
+🌐 **Live at:** [parceau.onrender.com](https://parceau.onrender.com)
 
 ---
 
-## 🚀 Cómo ejecutar
+## 🚀 How to Run Locally
 
-### Requisitos
-
-- Python 3.9 o superior
-
-### Pasos
+**Requirements:** Python 3.9 or higher
 
 ```bash
-# 1. (Opcional pero recomendado) crear entorno virtual
+# 1. (Optional but recommended) Create virtual environment
 python -m venv venv
 
 # Windows
@@ -29,62 +28,69 @@ venv\Scripts\activate
 # Linux/Mac
 source venv/bin/activate
 
-# 2. Instalar dependencias
+# 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Ejecutar la aplicación
+# 3. Run the application
 python app.py
 
-# 4. Abrir en el navegador
+# 4. Open in browser
 # http://localhost:5000
 ```
 
 ---
 
-## 📦 Estructura del proyecto
+## 📦 Project Structure
 
-```
 ParceAU/
-├── app.py                  # Flask app y rutas
-├── requirements.txt
-├── REQUERIMIENTO.md        # Documento de requerimientos
-├── data/                   # Información estática (JSON)
+├── app.py              # Flask app and routes
+├── requirements.txt    # Dependencies
+├── data/
 │   ├── checklists.json
 │   ├── plantillas.json
 │   ├── numeros.json
 │   ├── transporte.json
-│   └── abogados.json       # Directorio de abogados migratorios
+│   └── abogados.json   # Migration lawyers directory
 ├── static/
-│   ├── vendor/             # Bootstrap 5 local (offline)
+│   ├── vendor/         # Bootstrap 5 (local/offline)
 │   ├── css/style.css
-│   └── js/                 # Lógica por módulo + utilidades
-└── templates/              # Vistas Jinja2
-```
+│   └── js/
+└── templates/          # Jinja2 views
 
 ---
 
-## 🧰 Módulos
+## 🧩 Modules
 
-| Módulo                      | Descripción                                                                 |
-| --------------------------- | --------------------------------------------------------------------------- |
-| ⏱️ Calculadora de horas     | Registra turnos y vigila el límite por quincena (configurable).             |
-| 💰 Control financiero       | Ingresos, gastos, saldo y presupuesto diario.                              |
-| ✅ Checklist                 | Tareas antes y después de llegar a Australia.                              |
-| 💬 Plantillas en inglés     | Mensajes listos para copiar al portapapeles.                               |
-| 📞 Números importantes      | Emergencias, Fair Work, Lifeline, etc.                                     |
-| 🚇 Transporte público       | Tarjetas y consejos por ciudad.                                            |
-| ⚖️ Abogados migratorios     | Directorio por ciudad con idioma (ES/EN), ubicación y datos de contacto.   |
-
----
-
-## 💾 Datos del usuario
-
-Toda la información que ingreses (turnos, ingresos, gastos, checklists marcados, límite de horas) se guarda **únicamente en el `localStorage` de tu navegador**, en tu propio dispositivo. No se envía a ningún servidor.
-
-Si vacías el caché del navegador o usas otro dispositivo, los datos no se transfieren.
+| Module | Description |
+|--------|-------------|
+| ⏱️ Hours Calculator | Track shifts and monitor fortnightly hour limits |
+| 💰 Financial Control | Income, expenses, balance and daily budget |
+| ✅ Arrival Checklist | Tasks before and after arriving in Australia |
+| 💬 English Templates | Ready-to-use messages for common situations |
+| 📞 Important Numbers | Emergencies, Fair Work, Lifeline, and more |
+| 🚌 Public Transport | Cards and tips by city |
+| ⚖️ Migration Lawyers | Directory by city with language and contact info |
 
 ---
 
-## ⚠️ Aviso
+## 🔒 User Data
 
-Esta aplicación es una **guía informativa**. No reemplaza asesoría migratoria, legal, financiera ni médica.
+All information you enter (shifts, income, expenses, checklists) 
+is stored exclusively in your browser's localStorage. 
+It is never sent to any server.
+
+If you clear your browser cache or use a different device, 
+the data will not transfer.
+
+---
+
+## ⚠️ Disclaimer
+
+This application is an **informational guide**. 
+It does not replace professional migration, legal, financial, or medical advice.
+
+---
+
+## 🛠️ Stack
+
+`Python` `Flask` `Jinja2` `Bootstrap 5` `JavaScript` `JSON` `Render`
